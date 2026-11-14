@@ -2,9 +2,11 @@
 
 Customized by Platyun
 
+> **歷史基線**：這是 2026-11-15 第一版整理稿（[8c3651f](https://github.com/Platyun/ios-location-research/tree/8c3651f6c719876d15dfb9274e5840f6a57a48fd)），保留供追溯。現行內容以[整合總結](cross-repo-summary.md)為準。複審只更正兩處事實：研究起點是 itool-fix 的早期距離限制研究；iOS 27.2.1 是同一台手機在 27.0.1 實測通過後更新系統再做的複測。
+
 ## 研究來源
 
-本次依 Platyun 的既有私人研究 repo 整理，來源版本為 5ede53336972543a4c79cb5540029ed837b82146，主要文件為最新研究交接、早期距離與網路配置研究報告、探測實驗說明。再加入使用者於 2026-11-15 補充的 iPhone 16 Pro／iOS 27.2.1 未重開成功回報。
+本次依 Platyun 的既有私人研究 repo 整理，來源版本為 5ede53336972543a4c79cb5540029ed837b82146，主要文件為最新研究交接、[早期距離與網路配置研究報告](https://github.com/Platyun/itool-fix/blob/5ede53336972543a4c79cb5540029ed837b82146/docs/ios27-itools-20km-research.md)（研究起點，2026-11-10）、探測實驗說明。再加入使用者於 2026-11-15 補充的回報：同一台 iPhone 16 Pro 在 iOS 27.0.1 實測通過後更新到 iOS 27.2.1，複測成功且未重開。
 
 原始交接與開發歷程未搬入新 repo。新回報獨立列項，沒有回填成舊版匯出紀錄。本文是依證據重新編排的研究整理，不宣稱逐字完整保存原稿。
 

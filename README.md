@@ -2,51 +2,34 @@
 
 Customized by Platyun
 
-## 最新總結與品質審查
+研究未越獄 iPhone 能否不重開整機，讓原本的定位工具重新套用位置。本 repo 只保存脫敏研究文件，不包含程式碼、配置、安裝包、圖片或開發交接紀錄。
 
-本次同時核對原研究與發布版 repo；舊論文稿保留作為審查基線。
-
-給 Claude 接續：[獨立複審與排版調整 prompt](docs/claude-review-prompt.md)。
+## 閱讀入口
 
 | 文件 | HTML 閱讀版 | GitHub 直接閱讀 |
 | --- | --- | --- |
-| 研究與發布版整合總結 | [開啟 HTML](docs/cross-repo-summary.html) | [閱讀 Markdown](docs/cross-repo-summary.md) |
-| 完整品質審查、改善順序與生成規範 | [開啟 HTML](docs/quality-review.html) | [閱讀 Markdown](docs/quality-review.md) |
+| **整合總結（主文）** | [開啟 HTML](docs/cross-repo-summary.html) | [閱讀 Markdown](docs/cross-repo-summary.md) |
+| 品質審查（獨立複審版） | [開啟 HTML](docs/quality-review.html) | [閱讀 Markdown](docs/quality-review.md) |
+| 複審結果與檢查紀錄 | — | [閱讀 Markdown](docs/claude-review-result.md) |
 
-GitHub 的 HTML 檔案頁可能顯示原始碼；下載該 HTML 後用瀏覽器開啟即可閱讀完整排版，無須網路。Markdown 可直接在 GitHub 閱讀。兩種格式由同一份內容產生。
-
-
-研究未越獄 iPhone 能否免整機重開，協助原本的定位工具重新套用位置。本 repo 只保存脫敏研究文件，不包含程式碼、配置、安裝包、圖片或開發交接紀錄。
+HTML 檔在 GitHub 上會顯示原始碼，請下載後用瀏覽器開啟；不需網路。這些 HTML 沒有部署成網站。Markdown 可直接在 GitHub 閱讀，兩種格式內容相同。
 
 ## 結論
 
-**使用者已回報：iPhone 16 Pro、iOS 27.2.1，在未重開整機的情況下重新套用成功。就「免整機重開重新套用位置」這個操作目標，已有成功案例。**
+**同一台 iPhone 16 Pro 先在 iOS 27.0.1 實測通過，更新到 iOS 27.2.1 後複測仍成功，且沒有重開整機。**
 
-先前 iOS 27.0.1 也有一次呼叫探測入口回傳 YES、其後重新套用成功的紀錄。兩筆回報支持這個研究方向具有實際操作價值，但不構成所有裝置、所有版本都適用的保證，也沒有證明系統定位程序重啟或基地台快取被清除。
+這表示「不重開整機重新套用位置」在這台裝置上可行，並在系統更新後仍可重現。目前還沒有確認成功是否由送出請求造成，也沒有證實 locationd 重啟或基地台快取清除。成功維持多久不列為本次門檻。
 
-本次驗收關注能否免整機重開完成重新套用，不以維持多久作為成功條件。
+## 研究起點
 
-## 使用者提供的測試環境與結果
+研究起於 [itool-fix](https://github.com/Platyun/itool-fix) 的早期研究（2026-11-10）：使用 iTools BT 2.5 時，iOS 27 約 20 km 外選點失敗，iOS 18 則正常。之後問題轉為「失效後能否不重開整機就重新套用」，並做出探測 App 與發布版 ResetLocation。完整時間線見整合總結第 2 節。
 
-| 紀錄 | 設備 | 系統 | 結果與證據範圍 |
-| --- | --- | --- | --- |
-| 先前紀錄，2026-11-14 | iPhone 16 Pro；機型由後續補充 | iOS 27.0.1 | 使用者提供的匯出紀錄顯示方法存在、回傳 YES；其後回報重新套用成功。當時收到不重開的測試指示，但完整操作過程未獨立觀察。 |
-| 最新補充，2026-11-15 | iPhone 16 Pro | iOS 27.2.1 | 使用者明確回報實測成功，並確認沒有重開整機。未提供本次匯出紀錄及逐步操作記錄。 |
+## 歷史基線文件
 
-裝置系統版本是使用者回報值；建置 SDK 版本另列，不能混為同一項證據。
+以下是 2026-11-15 第一版整理稿，保留供追溯，不再單獨維護。內容有出入時以整合總結為準。
 
-## 論文式研究全文
-
-[未越獄 iPhone 免整機重開重新套用定位之可行性：探索性個案研究](docs/paper.md)
-
-全文包含摘要、資料與方法、結果、逐步假說推導、競爭解釋、討論、限制及結論。屬探索性研究整理稿，未經同儕審查。
-
-## 閱讀順序
-
-1. [研究結論](docs/conclusion.md)：回答解決了什麼、仍不知道什麼。
-2. [實測證據](docs/evidence.md)：區分使用者回報、工具紀錄、維護者說明、推論與未知。
-3. [研究脈絡](docs/research.md)：距離現象、網路配置、快取與系統入口。
-4. [可選後續驗證](docs/verification.md)：僅在需要確認機制或新環境時進行。
-5. [來源與整理方式](docs/sources.md)：可追溯來源及脫敏範圍。
+- [個案研究稿](docs/case-study.md)
+- [研究結論](docs/conclusion.md)、[實測證據](docs/evidence.md)、[研究脈絡](docs/research.md)、[可選後續驗證](docs/verification.md)、[來源與整理方式](docs/sources.md)
+- [獨立複審交接說明](docs/claude-review-prompt.md)
 
 更新日期：2026-11-15。

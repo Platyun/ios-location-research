@@ -20,7 +20,7 @@ Customized by Platyun
 | 發布版 repo | https://github.com/Platyun/reset.loacation.by.Platyun/tree/5790b4f0d18257b6f293ab005b12d94c62efec08 | 實際實作、手冊、側載與下載包。 |
 | 整合總結 | docs/cross-repo-summary.md、同名 HTML | 優先閱讀及修訂的總結。 |
 | 品質審查 | docs/quality-review.md、同名 HTML | 14 項既有發現及證據，逐項核對，並非標準答案。 |
-| 舊論文稿及附屬文件 | docs/paper.md、conclusion.md、evidence.md、research.md、sources.md、verification.md | 被審查基線與脈絡；主文與歷史定位需清楚，不製造更多互相覆述的文件。 |
+| 舊研究稿及附屬文件 | docs/case-study.md（原 paper.md）、conclusion.md、evidence.md、research.md、sources.md、verification.md | 被審查基線與脈絡；主文與歷史定位需清楚，不製造更多互相覆述的文件。 |
 | README | repo 根目錄 | HTML／Markdown 的主要閱讀入口。 |
 
 若來源權限不足，先完成能完成的文件與排版檢查，明列無法核對的項目，不把讀不到寫成來源不存在，也不要求公開私人 repo。
