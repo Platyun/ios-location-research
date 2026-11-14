@@ -60,6 +60,8 @@ P0：足以直接捏造核心結果或造成不可接受資料外洩的已確認
 
 ## 4. 缺陷證據、原因與修正
 
+以下根因判讀中，文件矛盾、檔案缺項與生成步驟屬已觀察事實；對整理策略為何導致缺陷的解釋屬根據產物及修訂歷程的推論，不代表已知模型內部原因。
+
 ### Q01：證據鏈不足
 
 **例子：** [sources 第 7 行](https://github.com/Platyun/ios-location-research/blob/8c3651f6c719876d15dfb9274e5840f6a57a48fd/docs/sources.md#L7)只給來源 SHA 與泛稱文件；[paper 的 E1](https://github.com/Platyun/ios-location-research/blob/8c3651f6c719876d15dfb9274e5840f6a57a48fd/docs/paper.md#L169)連到同批生成的 evidence，而非逐筆原材料。E-02 的新回報沒有可識別的脫敏直接摘錄與穩定紀錄 ID。
