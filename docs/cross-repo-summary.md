@@ -20,7 +20,7 @@ Customized by Platyun · 2026-11-15
 
 發布版遠端在基線之後多一個提交 [3402ad0](https://github.com/Platyun/reset.loacation.by.Platyun/commit/3402ad02bcf3bb979f5c68b8cf664ed6e2110c5f), 只把 README 測試環境由「iOS 27.0.1」改為「iOS 27.0.1, 27.2.1」, 其餘檔案不變. 本文的發布版判讀仍以 5790b4f 為準, 凡受此提交影響的地方另行註明. itool-fix 遠端沒有比 5ede533 更新的提交.
 
-本 repo 的舊版文件 ([8c3651f](https://github.com/Platyun/ios-location-research/tree/8c3651f6c719876d15dfb9274e5840f6a57a48fd)) 是被審查的整理稿, 不能當作獨立證據引用.
+本 repo 的舊版文件 ([8c3651f](https://github.com/Platyun/ios-location-research/tree/8c3651f6c719876d15dfb9274e5840f6a57a48fd)) 是第一版整理稿, 不能當作獨立證據引用.
 
 ## 2. 研究起點與問題演變
 
@@ -115,17 +115,6 @@ App 成功不能推定小工具也成功; 最新成功回報沒有指明安裝�
 
 [發布手冊](https://github.com/Platyun/reset.loacation.by.Platyun/blob/5790b4f0d18257b6f293ab005b12d94c62efec08/docs/manual/操作手冊.md?plain=1#L43)寫的是作者自己的操作順序: 連接 Shadowrocket → 連接兩個藍牙 → 關閉定位 → ResetLocation → 開啟定位. 這是已成功的流程, 但沒有逐一證明每一步都必要; 別人的配件數量或網路環境不同時, 不能直接當成必要條件.
 
-## 8. 已知文件差異
-
-| 原 repo 位置 | 問題 | 待修方式 |
-| --- | --- | --- |
-| 研究 App README [L23](https://github.com/Platyun/itool-fix/blob/5ede53336972543a4c79cb5540029ed837b82146/Platyun-Location-Service-Probe/README.md?plain=1#L23) 與 [L69](https://github.com/Platyun/itool-fix/blob/5ede53336972543a4c79cb5540029ed837b82146/Platyun-Location-Service-Probe/README.md?plain=1#L69) | 一處說強制結束會重置冷卻, 一處說不會. 兩者其實分別對應「無 App Groups 建置」 (冷卻只存在程序內) 與「有 App Groups」 (冷卻存到共用檔), 但文中沒寫適用模式. | 兩句各標明適用的建置模式. |
-| 研究 App README L7 與 L11 | L7 已有方法存在與返回紀錄, L11 仍寫尚未確認 iOS 27 是否保留此介面. | L11 改為歷史敘述. |
-| 發布 README [L23](https://github.com/Platyun/reset.loacation.by.Platyun/blob/5790b4f0d18257b6f293ab005b12d94c62efec08/README.md?plain=1#L23) | 功能清單寫小工具「直接在背景送出, 不開 App」; 「仍需真機確認」的說明在 L37 另一節. | 把驗證狀態寫在功能旁. |
-| 發布手冊 [L104](https://github.com/Platyun/reset.loacation.by.Platyun/blob/5790b4f0d18257b6f293ab005b12d94c62efec08/docs/manual/操作手冊.md?plain=1#L104) | 「處理中或冷卻中顯示倒數」; 程式中處理中顯示「正在送出請求…」, 只有冷卻顯示倒數. | 兩種狀態分列. |
-| 下載 ZIP 內 README | 4 個相對連結 (兩份 IPA, 側載說明, 校驗檔) 指向 ZIP 內不存在的檔案. 本次解壓重跑確認. | 改為 ZIP 內有效的連結或線上固定版本連結. |
-| 研究 README 測試環境 | 只寫 iOS 27.0.1; 發布 README 已在 3402ad0 補上 27.2.1. | 補上 27.2.1, 並註明是同一台更新後複測. |
-
-## 9. 可直接引用的總結
+## 8. 可直接引用的總結
 
 「本研究起於 iOS 27 上外接定位配件約 20 km 的選點限制, 後來改為研究失效後能否不重開整機重新套用位置. 研究做出手動送出定位服務請求的實驗 App. 使用者以同一台 iPhone 16 Pro 在 iOS 27.0.1 實測通過, 更新到 iOS 27.2.1 後複測仍成功, 且沒有重開整機. 依使用者回報, 此操作在該裝置上可行, 並在系統更新後仍可重現; 但還沒有確認成功是否由送出請求造成, 也沒有證實 locationd 重啟或基地台快取清除. 小工具, 跨程序冷卻與側載安裝的驗證狀態要分開看, 不能由 App 成功一併推定.」

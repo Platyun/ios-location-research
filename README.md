@@ -9,8 +9,6 @@ Customized by Platyun
 | 文件 | HTML 閱讀版 | GitHub 直接閱讀 |
 | --- | --- | --- |
 | **整合總結 (主文)** | [開啟 HTML](docs/cross-repo-summary.html) | [閱讀 Markdown](docs/cross-repo-summary.md) |
-| 品質審查 (獨立複審版) | [開啟 HTML](docs/quality-review.html) | [閱讀 Markdown](docs/quality-review.md) |
-| 複審結果與檢查紀錄 | — | [閱讀 Markdown](docs/claude-review-result.md) |
 
 HTML 檔在 GitHub 上會顯示原始碼, 請下載後用瀏覽器開啟; 不需網路. 這些 HTML 沒有部署成網站. Markdown 可直接在 GitHub 閱讀, 兩種格式內容相同.
 
@@ -30,6 +28,5 @@ HTML 檔在 GitHub 上會顯示原始碼, 請下載後用瀏覽器開啟; 不需
 
 - [個案研究稿](docs/case-study.md)
 - [研究結論](docs/conclusion.md), [實測證據](docs/evidence.md), [研究脈絡](docs/research.md), [可選後續驗證](docs/verification.md), [來源與整理方式](docs/sources.md)
-- [獨立複審交接說明](docs/claude-review-prompt.md)
 
 更新日期: 2026-11-15.

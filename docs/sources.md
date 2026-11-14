@@ -2,7 +2,7 @@
 
 Customized by Platyun
 
-> **歷史基線**：這是 2026-11-15 第一版整理稿（[8c3651f](https://github.com/Platyun/ios-location-research/tree/8c3651f6c719876d15dfb9274e5840f6a57a48fd)），保留供追溯。現行內容以[整合總結](cross-repo-summary.md)為準。複審只更正兩處事實：研究起點是 itool-fix 的早期距離限制研究；iOS 27.2.1 是同一台手機在 27.0.1 實測通過後更新系統再做的複測。
+> **歷史基線**：這是 2026-11-15 第一版整理稿（[8c3651f](https://github.com/Platyun/ios-location-research/tree/8c3651f6c719876d15dfb9274e5840f6a57a48fd)），保留供追溯。現行內容以[整合總結](cross-repo-summary.md)為準。2026-11-15 更正兩處事實：研究起點是 itool-fix 的早期距離限制研究；iOS 27.2.1 是同一台手機在 27.0.1 實測通過後更新系統再做的複測。
 
 ## 研究來源
 
