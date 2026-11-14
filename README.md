@@ -2,6 +2,18 @@
 
 Customized by Platyun
 
+## 最新總結與品質審查
+
+本次同時核對原研究與發布版 repo；舊論文稿保留作為審查基線。
+
+| 文件 | HTML 閱讀版 | GitHub 直接閱讀 |
+| --- | --- | --- |
+| 研究與發布版整合總結 | [開啟 HTML](docs/cross-repo-summary.html) | [閱讀 Markdown](docs/cross-repo-summary.md) |
+| 完整品質審查、改善順序與生成規範 | [開啟 HTML](docs/quality-review.html) | [閱讀 Markdown](docs/quality-review.md) |
+
+GitHub 的 HTML 檔案頁可能顯示原始碼；下載該 HTML 後用瀏覽器開啟即可閱讀完整排版，無須網路。Markdown 可直接在 GitHub 閱讀。兩種格式由同一份內容產生。
+
+
 研究未越獄 iPhone 能否免整機重開，協助原本的定位工具重新套用位置。本 repo 只保存脫敏研究文件，不包含程式碼、配置、安裝包、圖片或開發交接紀錄。
 
 ## 結論
