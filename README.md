@@ -6,6 +6,8 @@ Customized by Platyun
 
 本次同時核對原研究與發布版 repo；舊論文稿保留作為審查基線。
 
+給 Claude 接續：[獨立複審與排版調整 prompt](docs/claude-review-prompt.md)。
+
 | 文件 | HTML 閱讀版 | GitHub 直接閱讀 |
 | --- | --- | --- |
 | 研究與發布版整合總結 | [開啟 HTML](docs/cross-repo-summary.html) | [閱讀 Markdown](docs/cross-repo-summary.md) |
