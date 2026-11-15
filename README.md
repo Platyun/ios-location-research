@@ -8,19 +8,19 @@ Customized by Platyun
 
 | 文件 | HTML 閱讀版 | GitHub 直接閱讀 |
 | --- | --- | --- |
-| **整合總結 (主文)** | [開啟 HTML](docs/cross-repo-summary.html) | [閱讀 Markdown](docs/cross-repo-summary.md) |
+| **研究主文：不重開 iPhone，能不能重新套用定位？** | [開啟 HTML](docs/cross-repo-summary.html) | [閱讀 Markdown](docs/cross-repo-summary.md) |
 
 HTML 檔在 GitHub 上會顯示原始碼, 請下載後用瀏覽器開啟; 不需網路. 這些 HTML 沒有部署成網站. Markdown 可直接在 GitHub 閱讀, 兩種格式內容相同.
 
 ## 結論
 
-**同一台 iPhone 16 Pro 先在 iOS 27.0.1 實測通過, 更新到 iOS 27.2.1 後複測仍成功, 且沒有重開整機. 另一台 iPhone 18 Pro Max 在 iOS 27.2 也實測成功.**
+**同一台 iPhone 16 Pro 先在 iOS 27.0.1 實測通過, 更新到 iOS 27.2.1 後複測仍成功, 且沒有重開整機. 另一台 iPhone 18 Pro Max 在 iOS 27.2 也實測成功，並已確認沒有重開整機。**
 
 這表示「不重開整機重新套用位置」在不只一台裝置上可行, 並在系統更新後仍可重現. 目前還沒有確認成功是否由送出請求造成, 也沒有證實 locationd 重啟或基地台快取清除. 成功維持多久不列為本次門檻.
 
 ## 研究起點
 
-研究起於 [itool-fix](https://github.com/Platyun/itool-fix) 的早期研究 (2026-11-10): 使用 iTools BT 2.5 時, iOS 27 約 20 km 外選點失敗, iOS 18 則正常. 之後問題轉為「失效後能否不重開整機就重新套用」, 並做出探測 App 與發布版 ResetLocation. 完整時間線見整合總結第 2 節.
+研究起於 [itool-fix](https://github.com/Platyun/itool-fix) 的早期研究 (2026-11-10): 使用 iTools BT 2.5 時, iOS 27 約 20 km 外選點失敗, iOS 18 則正常. 之後問題轉為「失效後能否不重開整機就重新套用」, 並做出探測 App 與發布版 ResetLocation. 完整研究過程與證據見整合總結。
 
 ## 歷史基線文件
 
