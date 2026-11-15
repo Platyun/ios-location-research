@@ -103,7 +103,7 @@ h2,h3{break-after:avoid}tr{break-inside:avoid}a{color:#000}
 <p>第一筆紀錄的重要性，在於候選入口確實不只存在於舊文件：iOS 27.0.1 的匯出紀錄顯示方法存在，回傳型別為 <code>B</code>、大小 1，一次呼叫正常返回 YES，原始值 1，隨後使用者回報成功。</p>
 <p>接著，同一台手機更新到 iOS 27.2.1 後仍能成功，並明確確認沒有重開。這讓結果多了一層延續性：成功並未只停留在更新前的那次測試。不過，因為沒有完整記錄 App、配件及其他條件，還不能把它當成只改變系統版本的比較。</p>
 <p>iPhone 18 Pro Max／iOS 27.2 的回報，則把範圍從同一台手機的前後測試，擴展到另一台裝置。最新的「無重開」補充，補齊了這筆紀錄最重要的條件；它是原有測試的補充，不另算一次新測試。</p>
-<p>目前共整理三筆成功回報、涉及兩台裝置。同一台 iPhone 16 Pro 的兩筆不能當作兩台獨立裝置，也沒有完整嘗試與失敗次數可計算成功率。兩筆後續回報都沒有新的 runtime 匯出紀錄，因此不沿用第一筆的 YES。成功維持多久，依使用者設定的目標，不列為這次的成敗門檻。</p>
+<p>目前共整理三筆成功回報、涉及兩台裝置。同一台 iPhone 16 Pro 的兩筆不能當作兩台獨立裝置，也沒有完整嘗試與失敗次數可計算成功率。兩筆後續回報都沒有新的 runtime 匯出紀錄，因此不沿用第一筆的 YES。本次關注能否免重開完成重新套用，未評估長期穩定性。</p>
 <h2 id="section-48">4. 為什麼仍不能直接說是清除了基地台快取？</h2>
 <p>免重開成功，使「一定得重開整機才能重新套用」不再適用於已回報案例，也讓局部改變定位相關狀態的方向值得保留。但從這裡走到「請求造成恢復」，還差一個比較：在相同失效條件下，不送請求、只走原流程，是否也能成功？</p>
 <p>現有紀錄沒有這個對照，也沒有完整記下每次按下前是否確實失效。因此，送出請求後成功是已記錄的先後關係；是否由這個請求促成恢復，還需要把重連配件、關開定位、等待和其他操作的影響分開。</p>
@@ -112,34 +112,31 @@ h2,h3{break-after:avoid}tr{break-inside:avoid}a{color:#000}
 <h2 id="section-58">5. ResetLocation 在這段研究中的位置</h2>
 <p>ResetLocation 把早期手動探測整理成較容易使用的工具，包括送出前確認、請求返回後的 10 秒冷卻、操作紀錄與主畫面小工具。它讓同一研究方向有了可操作的介面；功能細節可參考 <a href="https://github.com/Platyun/reset.location.by.Platyun">發布版說明</a>。</p>
 <p>工具的紀錄回答的是方法檢查與請求返回情況，定位能否重新套用仍由使用者回到原工具確認。10 秒是目前採用的節流設計，沒有證據表示它是系統規定或已驗證的安全間隔。</p>
-<p>先前工程交接記錄了建置成功與 40 項假後端測試；這些支持當時的建置與節流邏輯，不能代替私有介面效果的真機驗證。小工具背景送出、跨程序共用冷卻，以及 IPA 側載後的簽名與執行，也各有自己的驗證需求。後續成功回報沒有指明安裝產物或送出路徑，因此不據此認定這些項目全數通過。本次只更新研究文字，沒有重跑建置、測試或封裝校驗。</p>
+<p>先前工程交接記錄了建置成功與 40 項假後端測試；這些支持當時的建置與節流邏輯，不能代替私有介面效果的真機驗證。小工具背景送出、跨程序共用冷卻，以及 IPA 側載後的簽名與執行，也各有自己的驗證需求。後續成功回報沒有指明安裝產物或送出路徑，因此不據此認定這些項目全數通過。上述工程結果來自既有紀錄。</p>
 <p>發布手冊記載的流程是連接 Shadowrocket、連接配件、關閉定位、使用 ResetLocation，再開啟定位。這提供了一條操作參考，但每一步是否必要尚未分離驗證，也不能把作者的配件數量直接視為所有人的必要條件。</p>
 <h2 id="section-68">6. 目前走到哪裡，接下來能怎麼釐清</h2>
 <p>研究從版本間的遠距離選點差異出發，經過網路條件調整、重開後恢復的觀察，逐步收斂到「能否只處理定位相關狀態」。候選入口的探測與後續真機回報，讓免整機重開有了實際成功案例；同一裝置跨更新複測成功，另一台裝置也確認未重開成功，進一步擴大了已知可行的範圍。</p>
-<p>若之後想釐清原因，可以在自然發生的失效狀態下，先記錄只走原流程的結果，再加入一次手動請求，並保留等待時間與重連步驟。同時若能取得 locationd 的相關日誌，就有機會把操作結果和程序變化連起來。這是後續可採用的方向，並非本次已完成的實驗，也不必為了補齊文件刻意重測。</p>
+<p>若之後想釐清原因，可以在自然發生的失效狀態下，先記錄只走原流程的結果，再加入一次手動請求，並保留等待時間與重連步驟。同時若能取得 locationd 的相關日誌，就有機會把操作結果和程序變化連起來。這些比較尚未執行，可作為後續釐清原因的方向。</p>
 <p>目前能清楚留下的成果是：<strong>在兩台已回報裝置上，重新套用定位已有不重開整機的成功案例；至於請求的因果作用與底層機制，仍待更多觀察。</strong></p>
 <h2 id="section-76">附錄一：來源與版本</h2>
 <div class="tw cards" tabindex="0" role="region" aria-label="資料表"><table><thead><tr><th scope="col">來源</th><th scope="col">固定版本</th><th scope="col">本文用途</th></tr></thead><tbody>
 <tr><td data-label="來源"><span class="v"><a href="https://github.com/Platyun/itool-fix/tree/5ede53336972543a4c79cb5540029ed837b82146">itool-fix (研究起點)</a></span></td><td data-label="固定版本"><span class="v">5ede533</span></td><td data-label="本文用途"><span class="v">早期距離限制研究, 研究交接, 探測 App 與首次真機紀錄, 工程驗證回報.</span></td></tr>
 <tr><td data-label="來源"><span class="v"><a href="https://github.com/Platyun/reset.location.by.Platyun/tree/5790b4f0d18257b6f293ab005b12d94c62efec08">發布版 repo</a></span></td><td data-label="固定版本"><span class="v">5790b4f</span></td><td data-label="本文用途"><span class="v">發布程式, 操作手冊, 側載說明與下載包.</span></td></tr>
-<tr><td data-label="來源"><span class="v">使用者直接補充</span></td><td data-label="固定版本"><span class="v">2026-11-15 收到</span></td><td data-label="本文用途"><span class="v">U-01～U-08，見附錄二.</span></td></tr>
+<tr><td data-label="來源"><span class="v">使用者直接補充</span></td><td data-label="固定版本"><span class="v">2026-11-15 收到</span></td><td data-label="本文用途"><span class="v">裝置、系統版本與實測結果，見附錄二。</span></td></tr>
 </tbody></table></div>
 <p>發布版遠端在基線之後多一個提交 <a href="https://github.com/Platyun/reset.location.by.Platyun/commit/3402ad02bcf3bb979f5c68b8cf664ed6e2110c5f">3402ad0</a>, 只把 README 測試環境由「iOS 27.0.1」改為「iOS 27.0.1, 27.2.1」, 其餘檔案不變. 本文的發布版判讀仍以 5790b4f 為準, 凡受此提交影響的地方另行註明. 之後的 <a href="https://github.com/Platyun/reset.location.by.Platyun/commit/619b9da115895aff4c04590f82f815d0a9ccd2fa">619b9da</a> 讓 Bundle ID 與 App Group 依簽名者的 Team ID 自動產生, 並在測試環境加入 iPhone 18 Pro Max, iOS 27.2; 呼叫與節流邏輯沒有改動. 上述提交關係沿用先前整理的版本紀錄，本次未重新比對完整提交歷史。</p>
 <p>本 repo 的舊版文件 (<a href="https://github.com/Platyun/ios-location-research/tree/8c3651f6c719876d15dfb9274e5840f6a57a48fd">8c3651f</a>) 是第一版整理稿, 不能當作獨立證據引用.</p>
 <h2 id="section-89">附錄二：證據紀錄</h2>
-<h3 id="section-91">使用者補充： 使用者直接補充</h3>
-<p>摘錄已脫敏. 日期是收到補充的日期, 不代表實際測試的精確時間; 內容是使用者自述, 不是第三方驗證.</p>
-<div class="tw cards" tabindex="0" role="region" aria-label="資料表"><table><thead><tr><th scope="col">ID</th><th scope="col">直接摘錄</th><th scope="col">支持的範圍</th></tr></thead><tbody>
-<tr><td data-label="ID"><span class="v">U-01</span></td><td data-label="直接摘錄"><span class="v">「iOS 27.2.1」「iPhone 16 Pro」「實測成功」</span></td><td data-label="支持的範圍"><span class="v">裝置, 系統版本與成功回報.</span></td></tr>
-<tr><td data-label="ID"><span class="v">U-02</span></td><td data-label="直接摘錄"><span class="v">「沒重開 維持多久應該不是重點」</span></td><td data-label="支持的範圍"><span class="v">明確未重開; 持續時間不列為門檻.</span></td></tr>
-<tr><td data-label="ID"><span class="v">U-03</span></td><td data-label="直接摘錄"><span class="v">「要去根據研究 repo 以及 發布版 repo 都做總結」</span></td><td data-label="支持的範圍"><span class="v">總結範圍包含兩個 repo.</span></td></tr>
-<tr><td data-label="ID"><span class="v">U-04</span></td><td data-label="直接摘錄"><span class="v">「可以的話用 HTML 比較好」「md 也一份可以在 github 直接讀」</span></td><td data-label="支持的範圍"><span class="v">HTML 與 Markdown 兩種格式.</span></td></tr>
-<tr><td data-label="ID"><span class="v">U-05</span></td><td data-label="直接摘錄"><span class="v">「記得 HTML 放 README 比較好點」</span></td><td data-label="支持的範圍"><span class="v">README 要有 HTML 入口.</span></td></tr>
-<tr><td data-label="ID"><span class="v">U-06</span></td><td data-label="直接摘錄"><span class="v">「27.0.1 實測通過後 更新成 27.2.1 複測成功」</span></td><td data-label="支持的範圍"><span class="v">兩筆是同一台裝置的先後測試: 先測, 更新系統, 再複測.</span></td></tr>
-<tr><td data-label="ID"><span class="v">U-07</span></td><td data-label="直接摘錄"><span class="v">「iPhone 18 Pro max」「iOS 27.2 實測成功」</span></td><td data-label="支持的範圍"><span class="v">第二台裝置與系統版本的成功回報.</span></td></tr>
-<tr><td data-label="ID"><span class="v">U-08</span></td><td data-label="直接摘錄"><span class="v">「新的 i18 紀錄無重開」</span></td><td data-label="支持的範圍"><span class="v">使用者於 2026-11-15 補充：E-05 的 iPhone 18 Pro Max 測試沒有重開整機；是補齊同一筆紀錄，不另計一次測試。</span></td></tr>
+<h3 id="section-91">實測補充紀錄</h3>
+<p>以下依測試者回報整理，日期為收到回報的日期，不代表實際測試時間；尚未進行獨立驗證。</p>
+<div class="tw cards" tabindex="0" role="region" aria-label="資料表"><table><thead><tr><th scope="col">ID</th><th scope="col">紀錄內容</th><th scope="col">支持的範圍</th></tr></thead><tbody>
+<tr><td data-label="ID"><span class="v">U-01</span></td><td data-label="紀錄內容"><span class="v">iPhone 16 Pro 在 iOS 27.2.1 重新套用成功。</span></td><td data-label="支持的範圍"><span class="v">裝置, 系統版本與成功回報.</span></td></tr>
+<tr><td data-label="ID"><span class="v">U-02</span></td><td data-label="紀錄內容"><span class="v">上述 iOS 27.2.1 測試沒有重開整機。</span></td><td data-label="支持的範圍"><span class="v">確認免整機重開的操作結果。</span></td></tr>
+<tr><td data-label="ID"><span class="v">U-06</span></td><td data-label="紀錄內容"><span class="v">同一台 iPhone 16 Pro 在 iOS 27.0.1 成功後，更新到 iOS 27.2.1 再複測成功。</span></td><td data-label="支持的範圍"><span class="v">兩筆是同一台裝置的先後測試: 先測, 更新系統, 再複測.</span></td></tr>
+<tr><td data-label="ID"><span class="v">U-07</span></td><td data-label="紀錄內容"><span class="v">另一台 iPhone 18 Pro Max 在 iOS 27.2 重新套用成功。</span></td><td data-label="支持的範圍"><span class="v">第二台裝置與系統版本的成功回報.</span></td></tr>
+<tr><td data-label="ID"><span class="v">U-08</span></td><td data-label="紀錄內容"><span class="v">上述 iPhone 18 Pro Max／iOS 27.2 測試沒有重開整機。</span></td><td data-label="支持的範圍"><span class="v">使用者於 2026-11-15 補充：E-05 的 iPhone 18 Pro Max 測試沒有重開整機；是補齊同一筆紀錄，不另計一次測試。</span></td></tr>
 </tbody></table></div>
-<h3 id="section-106">測試事件： 事件與已知欄位</h3>
+<h3 id="section-106">各次測試的已知資訊</h3>
 <div class="tw cards" tabindex="0" role="region" aria-label="資料表"><table><thead><tr><th scope="col">欄位</th><th scope="col">E-01: iOS 27.0.1</th><th scope="col">E-02: iOS 27.2.1</th><th scope="col">E-05: iOS 27.2</th></tr></thead><tbody>
 <tr><td data-label="欄位"><span class="v">來源</span></td><td data-label="E-01: iOS 27.0.1"><span class="v"><a href="https://github.com/Platyun/itool-fix/blob/5ede53336972543a4c79cb5540029ed837b82146/Platyun-Location-Service-Probe/HANDOFF.md?plain=1#L31">研究交接 L31–L55</a>, 是 App 匯出紀錄的轉錄; 原附件不在本 repo.</span></td><td data-label="E-02: iOS 27.2.1"><span class="v">U-01, U-02, U-06.</span></td><td data-label="E-05: iOS 27.2"><span class="v">U-07、U-08.</span></td></tr>
 <tr><td data-label="欄位"><span class="v">裝置</span></td><td data-label="E-01: iOS 27.0.1"><span class="v">iPhone 16 Pro (匯出紀錄沒有機型欄位, 機型由使用者後續補充).</span></td><td data-label="E-02: iOS 27.2.1"><span class="v">iPhone 16 Pro, 與 E-01 是同一台 (U-06).</span></td><td data-label="E-05: iOS 27.2"><span class="v">iPhone 18 Pro Max, 另一台裝置.</span></td></tr>
@@ -152,7 +149,7 @@ h2,h3{break-after:avoid}tr{break-inside:avoid}a{color:#000}
 <tr><td data-label="欄位"><span class="v">結果</span></td><td data-label="E-01: iOS 27.0.1"><span class="v">使用者回報「成功了」.</span></td><td data-label="E-02: iOS 27.2.1"><span class="v">使用者回報「複測成功」.</span></td><td data-label="E-05: iOS 27.2"><span class="v">使用者回報「實測成功」.</span></td></tr>
 <tr><td data-label="欄位"><span class="v">持續時間</span></td><td data-label="E-01: iOS 27.0.1"><span class="v">不列為門檻.</span></td><td data-label="E-02: iOS 27.2.1"><span class="v">不列為門檻.</span></td><td data-label="E-05: iOS 27.2"><span class="v">不列為門檻.</span></td></tr>
 </tbody></table></div>
-<h3 id="section-121">工程紀錄： 工程與封裝紀錄</h3>
+<h3 id="section-121">工程與封裝紀錄</h3>
 <div class="tw cards" tabindex="0" role="region" aria-label="資料表"><table><thead><tr><th scope="col">ID</th><th scope="col">材料</th><th scope="col">能支持什麼</th><th scope="col">不能支持什麼</th></tr></thead><tbody>
 <tr><td data-label="ID"><span class="v">E-03</span></td><td data-label="材料"><span class="v"><a href="https://github.com/Platyun/itool-fix/blob/5ede53336972543a4c79cb5540029ed837b82146/handoff/codex-to-claude.md?plain=1#L23">既有工程驗證回報</a>: 共用 gate 的 40 項假後端測試, 未簽名 App+小工具建置成功.</span></td><td data-label="能支持什麼"><span class="v">節流邏輯與建置當時通過.</span></td><td data-label="不能支持什麼"><span class="v">私有介面效果, 小工具背景執行或 iOS 程序查詢的真機結果. 本次沒有重跑.</span></td></tr>
 <tr><td data-label="ID"><span class="v">E-04</span></td><td data-label="材料"><span class="v">先前品質審查記錄：發布版 4 筆 SHA-256 全部吻合; 4 份 IPA 在兩個 repo 位元相同.</span></td><td data-label="能支持什麼"><span class="v">下載檔符合校驗檔, 兩端產物在該次核對時一致；本次文字更新未重跑。</span></td><td data-label="不能支持什麼"><span class="v">能用任何側載工具安裝, 或安裝後的行為.</span></td></tr>
