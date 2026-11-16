@@ -10,6 +10,8 @@ Customized by Platyun
 
 若有疑慮，建議將整個 repo 交給 AI 協助檢視，了解程式行為、權限需求與可能風險；若 AI 無法直接讀取 repo，可提供完整專案檔案。AI 的檢視結果僅供參考，不代表安全保證，也不能保證下載的安裝包與程式碼一致。
 
+**這是讓 iOS 27 在使用 4G / 5G 行動數據時, 也能重新套用定位的方法, 不必為此改接 Wi-Fi, 也不必重開整支手機.** 工具本身見 [ResetLocation](https://github.com/Platyun/reset.location.by.Platyun).
+
 研究未越獄 iPhone 能否不重開整機, 讓原本的定位工具重新套用位置. 本 repo 只保存脫敏研究文件, 不包含程式碼, 配置, 安裝包, 圖片或開發交接紀錄.
 
 ## 閱讀入口
